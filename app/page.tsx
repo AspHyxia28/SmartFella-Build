@@ -28,7 +28,7 @@ export default function Home() {
     const data = await res.json();
     if (res.ok) {
       console.log(`${isLogin ? 'Login' : 'Registration'} successful:`, data);
-      router.push('/welcome');
+      router.push('/crud');
     } else {
       console.error(`${isLogin ? 'Login' : 'Registration'} failed:`, data.message);
       console.error('Full error response:', data);
@@ -36,49 +36,69 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4">
-      <h1 className="text-2xl mb-4">{isLogin ? 'Login' : 'Register'}</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          className="p-2 border border-gray-300 rounded"
-          required
-        />
-        {!isLogin && (
-          <>
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-100">
+      <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
+        <h1 className="text-2xl font-bold mb-4">{isLogin ? 'Login' : 'Register'}</h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
             <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              className="p-2 border border-gray-300 rounded"
+              type="email"
+              name="email"
+              placeholder="Email"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
-            <select
-              name="role"
-              className="p-2 border border-gray-300 rounded"
+          </div>
+          {!isLogin && (
+            <>
+              <div>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              <div>
+                <select
+                  name="role"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                >
+                  <option value="user">User</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+            </>
+          )}
+          <div>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
+            />
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="w-full py-2 px-4 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="user">User</option>
-              <option value="admin">Admin</option>
-            </select>
-          </>
-        )}
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          className="p-2 border border-gray-300 rounded"
-          required
-        />
-        <button type="submit" className="p-2 bg-blue-500 text-white rounded">
-          {isLogin ? 'Login' : 'Register'}
-        </button>
-      </form>
-      <button onClick={toggleForm} className="mt-4 text-blue-500">
-        {isLogin ? 'Switch to Register' : 'Switch to Login'}
-      </button>
+              {isLogin ? 'Login' : 'Register'}
+            </button>
+          </div>
+        </form>
+        <div className="flex justify-center mt-4">
+          <button
+            onClick={toggleForm}
+            className="text-blue-500 hover:underline focus:outline-none"
+          >
+            {isLogin ? 'Switch to Register' : 'Switch to Login'}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
