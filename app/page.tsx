@@ -36,10 +36,10 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-100">
-      <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
-        <h1 className="text-2xl font-bold mb-4">{isLogin ? 'Login' : 'Register'}</h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="min-h-screen w-screen flex flex-col items-center justify-center p-4 bg-no-repeat bg-cover bg-land">
+      <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full bg-opacity-50">
+        <h1 className="text-2xl text-black font-bold mb-4">{isLogin ? 'Login' : 'Register'}</h1>
+        <form onSubmit={handleSubmit} className="space-y-4 text-black">
           <div>
             <input
               type="email"
@@ -93,7 +93,7 @@ export default function Home() {
         <div className="flex justify-center mt-4">
           <button
             onClick={toggleForm}
-            className="text-blue-500 hover:underline focus:outline-none"
+            className="text-black hover:underline focus:outline-none"
           >
             {isLogin ? 'Switch to Register' : 'Switch to Login'}
           </button>

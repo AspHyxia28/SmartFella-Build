@@ -8,9 +8,9 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      backgroundImage: {
+        'home': "url('/image.png')",
+        'land': "url('/honkai-star-wallpaper-astral-express.jpg')",
       },
     },
   },

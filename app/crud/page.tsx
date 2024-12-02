@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 interface Character {
     id: string;
-    picture: string | File | null; // Allow `picture` to be a string, File, or null
+    picture: string | File | null;
     name: string;
     rarity: string;
     path: string;
@@ -15,7 +15,7 @@ export default function Crud() {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [form, setForm] = useState<Character>({
     id: "",
-    picture: null, // Initialize as null
+    picture: null,
     name: "",
     rarity: "",
     path: "",
@@ -35,7 +35,7 @@ export default function Crud() {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setForm({ ...form, picture: e.target.files[0] }); // Set the picture as a File
+      setForm({ ...form, picture: e.target.files[0] });
     }
   };  
 
@@ -70,7 +70,7 @@ export default function Crud() {
       combat_type: "",
     });
     setIsEditing(false);
-    fetchCharacters(); // Refresh the list
+    fetchCharacters();
   };    
 
   const handleEdit = (character: Character) => {
@@ -80,23 +80,22 @@ export default function Crud() {
 
   const handleDelete = async (id: string) => {
     await fetch(`/api/characters?id=${id}`, { method: "DELETE" });
-    fetchCharacters(); // Refresh the list
+    fetchCharacters();
   };  
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen p-8 bg-no-repeat bg-cover bg-home">
       <h1 className="text-2xl font-bold mb-4">Manage Playable Characters</h1>
 
-      {/* Form Section */}
         <form
         onSubmit={handleSubmit}
-        className="mb-8 p-4 border border-gray-300 rounded"
+        className="mb-8 p-4 rounded bg-blue-900"
         encType="multipart/form-data"
         >
         <h2 className="text-lg font-bold mb-4">
             {isEditing ? "Edit Character" : "Add New Character"}
         </h2>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 font-bold text-black">
             <input
             type="text"
             placeholder="ID"
@@ -104,7 +103,7 @@ export default function Crud() {
             onChange={(e) => setForm({ ...form, id: e.target.value })}
             className="p-2 border border-gray-300 rounded"
             required
-            disabled={isEditing} // ID cannot be changed during editing
+            disabled={isEditing}
             />
             <input
             type="text"
@@ -115,7 +114,6 @@ export default function Crud() {
             required
             />
 
-            {/* Rarity Dropdown */}
             <select
             value={form.rarity}
             onChange={(e) => setForm({ ...form, rarity: e.target.value })}
@@ -127,7 +125,6 @@ export default function Crud() {
             <option value="5 ★">5 ★</option>
             </select>
 
-            {/* Path Dropdown */}
             <select
             value={form.path}
             onChange={(e) => setForm({ ...form, path: e.target.value })}
@@ -145,7 +142,6 @@ export default function Crud() {
             <option value="Remembrance">Remembrance</option>
             </select>
 
-            {/* Combat Type Dropdown */}
             <select
             value={form.combat_type}
             onChange={(e) => setForm({ ...form, combat_type: e.target.value })}
@@ -162,7 +158,6 @@ export default function Crud() {
             <option value="Imaginary">Imaginary</option>
             </select>
 
-            {/* File Upload */}
             <input
             type="file"
             accept="image/*"
@@ -178,10 +173,9 @@ export default function Crud() {
         </button>
         </form>
 
-      {/* Table Section */}
-      <table className="w-full border-collapse border border-gray-300">
+      <table className="w-full bg-blue-900">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="bg-blue-500">
             <th className="border border-gray-300 p-2">Image</th>
             <th className="border border-gray-300 p-2">ID</th>
             <th className="border border-gray-300 p-2">Name</th>
@@ -198,8 +192,8 @@ export default function Crud() {
                     <img
                     src={
                         typeof character.picture === "string"
-                        ? character.picture // Use the string URL
-                        : undefined // Fallback when no image is available
+                        ? character.picture
+                        : undefined
                     }
                     alt={character.name}
                     className="w-16 h-16 object-cover rounded"
