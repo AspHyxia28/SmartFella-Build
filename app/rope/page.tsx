@@ -163,13 +163,8 @@ export default function RelicRopepieceCRUD() {
                 "HP",
                 "ATK",
                 "DEF",
-                "Physical Damage Boost",
-                "Fire Damage Boost",
-                "Ice Damage Boost",
-                "Wind Damage Boost",
-                "Lightning Damage Boost",
-                "Quantum Damage Boost",
-                "Imaginary Damage Boost",
+                "Break Effect",
+                "Energy Regeneration Rate"
             ].map((mainStat) => (
                 <option key={mainStat} value={mainStat}>
                 {mainStat}
