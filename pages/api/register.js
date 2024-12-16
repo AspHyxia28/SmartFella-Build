@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const { email, username, password, role } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     try {
-      const [rows] = await pool.query('INSERT INTO users (email, username, password, role) VALUES (?, ?, ?, ?)', [email, username, hashedPassword, role]);
+      await pool.query('INSERT INTO users (email, username, password, role) VALUES (?, ?, ?, ?)', [email, username, hashedPassword, role]);
       res.status(200).json({ message: 'User registered successfully' });
     } catch (error) {
       console.error('Error during user registration:', error);

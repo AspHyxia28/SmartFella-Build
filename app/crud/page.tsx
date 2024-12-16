@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Navbar from '../../components/Navbar';
 
 interface Character {
     id: string;
@@ -85,8 +86,7 @@ export default function Crud() {
 
   return (
     <div className="min-h-screen p-8 bg-no-repeat bg-cover bg-home">
-      <h1 className="text-2xl font-bold mb-4">Manage Playable Characters</h1>
-
+      <h1 className="text-2xl font-bold mb-4">Manage Playable Characters </h1> <Navbar />
         <form
         onSubmit={handleSubmit}
         className="mb-8 p-4 rounded bg-blue-900"
