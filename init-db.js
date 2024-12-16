@@ -163,14 +163,14 @@ async function initDB() {
 
   await pool.query(`
     CREATE TABLE IF NOT EXISTS Character_Build (
-      id VARCHAR(255) PRIMARY KEY,
+      id int PRIMARY KEY,
       Playable_Characters_id VARCHAR(255),
-      Relic_Headpiece_id VARCHAR(255),
-      Relic_Handpiece_id VARCHAR(255),
-      Relic_Bodypiece_id VARCHAR(255),
-      Relic_Feetpiece_id VARCHAR(255),
-      Relic_Planarsphere_id VARCHAR(255),
-      Relic_Linkrope_id VARCHAR(255),
+      Relic_Headpiece_id VARCHAR(255) NULL,
+      Relic_Handpiece_id VARCHAR(255) NULL,
+      Relic_Bodypiece_id VARCHAR(255) NULL,
+      Relic_Feetpiece_id VARCHAR(255) NULL,
+      Relic_Planarsphere_id VARCHAR(255) NULL,
+      Relic_Linkrope_id VARCHAR(255) NULL,
       FOREIGN KEY (Playable_Characters_id) REFERENCES Playable_Characters(id),
       FOREIGN KEY (Relic_Headpiece_id) REFERENCES Relic_Headpiece(id),
       FOREIGN KEY (Relic_Handpiece_id) REFERENCES Relic_Handpiece(id),
